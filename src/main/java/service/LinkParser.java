@@ -1,22 +1,21 @@
 package service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LinkParser {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-    final static Pattern pattern1 = Pattern.compile("<a href=\"(.+?)\"");
-    //final static Pattern pattern2 = Pattern.compile("<a href(.+?)</a>");
+public class LinkParser {
+	
+	private static Logger logger = LoggerFactory.getLogger(LinkParser.class);
+
+    final static Pattern pattern = Pattern.compile("<a href=\"(.+?)\"");
+   
 
     public static void parseLink(String line, ConcurrentHashMap<String, Long> map) {
-
-        List<Pattern> patterns = new ArrayList<>();
-        patterns.add(pattern1);
-    //    patterns.add(pattern2);
-        for (Pattern pattern : patterns) {
+    	    logger.debug("parsing");
             final Matcher matcher = pattern.matcher(line);
             while (matcher.find()) {
                 String link = matcher.group(1);
@@ -29,6 +28,5 @@ public class LinkParser {
                 }
 
             }
-        }
-    }
+        }   
 }
