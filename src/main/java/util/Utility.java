@@ -4,6 +4,8 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import java.io.IOException;
+import java.net.*;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
@@ -34,5 +36,18 @@ public class Utility {
             e.printStackTrace();
         }
         HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+    }
+
+    public static URL getUrl(String address) throws MalformedURLException {
+        URL url = new URL(address);
+        return url;
+    }
+
+    public static HttpURLConnection getConnection(URL url) throws IOException {
+        HttpURLConnection conn = null;
+            Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("http-proxy.corporate.ge.com", 80));
+            conn = (HttpURLConnection) url.openConnection(proxy);
+
+        return conn;
     }
 }
