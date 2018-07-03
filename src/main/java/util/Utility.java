@@ -44,9 +44,7 @@ public class Utility {
     }
 
     public static HttpURLConnection getConnection(URL url) throws IOException {
-        HttpURLConnection conn = null;
-            Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("http-proxy.corporate.ge.com", 80));
-            conn = (HttpURLConnection) url.openConnection(proxy);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
         return conn;
     }

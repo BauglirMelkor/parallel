@@ -1,0 +1,13 @@
+2018-07-03 19:23:59 ERROR  FileWriter - Error during file creation 'C:\links.txt'
+java.nio.file.AccessDeniedException: C:\links.txt
+	at sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+	at sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at sun.nio.fs.WindowsFileSystemProvider.newByteChannel(Unknown Source)
+	at java.nio.file.spi.FileSystemProvider.newOutputStream(Unknown Source)
+	at java.nio.file.Files.newOutputStream(Unknown Source)
+	at java.nio.file.Files.newBufferedWriter(Unknown Source)
+	at java.nio.file.Files.newBufferedWriter(Unknown Source)
+	at util.FileWriter.writeToFile(FileWriter.java:20)
+	at ParallelReader.main(ParallelReader.java:38)
+2018-07-03 19:24:33 INFO   FileWriter - File created in 'C:\Users\TKA\Documents\links.txt'

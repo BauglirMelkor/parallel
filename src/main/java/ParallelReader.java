@@ -20,11 +20,11 @@ public class ParallelReader {
 
         Utility.byPassSsl();
 
-        URL url = Utility.getUrl("https://en.wikipedia.org/wiki/Europe");
+        URL url = Utility.getUrl("https://www.wikiwand.com/en/Europe");
 
         HttpURLConnection conn = Utility.getConnection(url);
 
-        Long startTime = System.nanoTime();
+       
         try {
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -32,15 +32,13 @@ public class ParallelReader {
                 Stream<String> linesStream = br.lines();
                 linesStream.parallel().filter(p -> p.contains("<a href"))
                         .parallel().forEach((p -> LinkParser.parseLink(p, linkMap)));
-                System.out.println("MAP:" + linkMap.toString());
+               
                 FileWriter fileWriter = new FileWriter();
 
-                fileWriter.writeToFile("C:\\Users\\212686307\\Documents\\links.txt", linkMap);
+                fileWriter.writeToFile("C:\\Users\\TKA\\Documents\\links.txt", linkMap);
 
             }
-            long endTime = System.nanoTime();
-            long totalTime = endTime - startTime;
-            System.out.println("TOTALTIME:" + totalTime);
+           
         } catch (IOException e) {
             e.printStackTrace();
         }
