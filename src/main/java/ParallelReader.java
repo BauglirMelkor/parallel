@@ -18,7 +18,8 @@ public class ParallelReader {
     public static void main(String[] args) throws KeyManagementException, NoSuchAlgorithmException, IOException {
         ConcurrentHashMap<String, Long> linkMap = new ConcurrentHashMap<>();
 
-        Utility.byPassSsl();
+        //Uncomment it if you want to test the application without importing SSL files.
+       // Utility.byPassSsl();
 
         URL url = Utility.getUrl("https://www.wikiwand.com/en/Europe");
 
